@@ -1,0 +1,9 @@
+obstacle_range: 2.5
+raytrace: 3.0
+#footprint: [[x0, y0], [x1,y1], ... [xn, yn]]
+robot_radius: 0.40 
+inflation_radius: 0.30
+
+observation_sources: point_cloud_sensor
+
+point_cloud_sensor: {sensor_frame: sonar, data_type: PointCloud, topic: /RosAria/sonar, marking: true, clearing: true}
