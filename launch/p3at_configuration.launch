@@ -1,6 +1,15 @@
 <launch>
     <arg name="port" default="/dev/ttyS0"/>
     <node pkg="rosaria" type="RosAria" name="RosAria" output="screen">	
-    <param name="port" value="$(arg port)"/>
+        <param name="port" value="$(arg port)"/>
     </node>
+    <node name="static_tf0" pkg="tf" type="static_transform_publisher" args="2 0 0 0 0 0 /map /odom 100"/>
+    
+    <arg name="urdf" default="$(find p3at_robot)/model/urdf/pioneer3at.urdf"/>
+    <arg name="gui" default="False"/>
+    <param name="robot_description" textfile="$(arg urdf)" />
+    <param name="use_gui" value="$(arg gui)"/>
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
 </launch>
